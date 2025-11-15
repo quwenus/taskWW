@@ -1,22 +1,30 @@
-const goToQuiz = document.getElementById('goToQuiz');
-const inputName = document.getElementById('inputName');
-const form = document.getElementById('form');
-const error = document.getElementById('error');
-const register = document.getElementById('register');
+export const goToQuiz = document.getElementById('goToQuiz');
+export const inputName = document.getElementById('inputName');
+export const register = document.getElementById('register');
 
-goToQuiz.addEventListener('click', (e) => {
-    e.preventDefault();
+import { buttonDisabled } from "../module/buttonDisabled.js";
+import { displayNone } from "../module/displayNone.js";
 
-    if (inputName.value !== ''){
-        register.style.display = 'none'
-        inputName.classList.remove('error')
-        error.innerHTML = ''
+inputName.addEventListener('input', buttonDisabled)
+goToQuiz.addEventListener('click', displayNone)
+
+
+const questions = [
+    {
+        question: 'Какая планета Солнечной системы самая большая по размеру?',
+        options: ['Земля', 'Сатурн', 'Юпитер', 'Нептун'],
+        correctAnswer: 2 //Юпитер
+    },
+    {
+        question: 'Что такое «красный гигант»?',
+        options: ['Тип чёрной дыры', 'Поздняя стадия эволюции звезды', 
+            'Большой астероид из железа', 'Галактика с красным смещением'],
+        correctAnswer: 1 //Поздняя стадия эволюции звезды
+    }, 
+    {
+        question: 'Как называется ближайшая к Земле звезда (после Солнца)?',
+        options: ['Сириус', 'Альфа Центавра', 'Проксима Центавра', 'Бетельгейзе'],
+        correctAnswer: 2 //Проксима Центавра
     }
-    else{
-        inputName.classList.add('error')
-        const message = document.createElement('p')
-        message.textContent = 'Введите имя!'
-        message.style.color = 'red'
-        error.appendChild(message)
-    }
-})
+]
+
